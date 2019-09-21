@@ -1,0 +1,1 @@
+"SELECT SUM(TotalSalePrice) AS total  FROM CarSales WHERE date >= CURRENT_TIMESTAMP -30";
