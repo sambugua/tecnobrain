@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>MENU</title>
+    <link rel="stylesheet" type="text/css" href="css/w3school.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+      //alert("You are good to go");
+      var html ="";
+$.ajax({
+  url:"menu.json",
+  type:"GET",
+  success:function(data)
+  {
+    
+    $.each(data,function(index,element)
+    { 
+      html +='<div class="col-md-12 col-lg-12 col-md-12">';
+      html +='<ul class="w3-card-4 w3-ul>' +
+      '<li  class="w3-padding-16 w3-black w3-text-white"><a id="" class="new_class w3-text-white w3-center" style="text-decoration:none;text-align:center;" href="#">' + element.name + '</a>' +
+      '<ul class="w3-ul" style="list-style:none;">';
+      $.each(element.choices,function(index1,element1){
+         html +='<li class="w3-padding-16 ">' + element1.name;
+            
+        
+         
+         });
+         '<ul style="padding-left:10%" class="w3-ul w3-padding-left" style="list-style:none;">';
+            html+= '<li class="w3-padding-16 w3-black w3-text-white w3-padding-lef w3-t"><a id="" class="new_class w3-text-white w3-center" style="text-decoration:none;text-align:center;" href="#">Related</a></li>';
+         $.each(element.related,function(index2,element2){
+        //alert(element.choices);
+       html += '<li>' + element2.name +
+       
+        '</li></ul></li>';
+         
+         
+      });
+      '</li></ul></div>';
+
+    });
+    $('#add').html(html);
+  }
+});
+    });
+    </script>
+</head>
+<body>
+    <div class="w3-card-4 w3-padding-16 w3-padding-right w3-padding-left">
+       <h2 class="w3-large w3-center">Restuarant MENUS</h2> 
+       <hr>
+       <div class="row add" id="add">
+         
+          
+      </div>
+     
+     
+    </div>
+
+  
+</body>
+</html>
